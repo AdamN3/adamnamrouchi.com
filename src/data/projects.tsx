@@ -1,0 +1,30 @@
+export const projects = [
+  {
+    id: 1,
+    number: '01',
+    title: 'Callavex',
+    role: 'Full Stack Developer & Co-Founder',
+    techIcons: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    imageSrc: '/projects/callavex.png',
+    link: 'https://callavex.vercel.app/',
+  },
+  {
+    id: 2,
+    number: '02',
+    title: 'Fast Mobile DPF Cleaning',
+    role: 'Full Stack Developer',
+    techIcons: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    imageSrc: '/projects/dpf.png',
+    link: 'https://mobiledpfpro.vercel.app/',
+  },
+  {
+    id: 3,
+    number: '03',
+    title: 'Altolend',
+    role: 'Full Stack Developer',
+    tag: 'In Progress',
+    techIcons: ['Python', 'FastAPI', 'Scikit-learn', 'Streamlit'],
+    imageSrc: '/projects/altolend.png',
+    link: 'https://github.com/AdamN3',
+  },
+];
