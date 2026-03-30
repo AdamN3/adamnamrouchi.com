@@ -23,8 +23,16 @@ export const projects = [
     title: 'Altolend',
     role: 'Full Stack Developer',
     tag: 'In Progress',
-    techIcons: ['Python', 'FastAPI', 'Scikit-learn', 'Streamlit'],
+    techIcons: [
+      'Python',
+      'Scikit-learn',
+      'FastAPI',
+      'PostgreSQL',
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+    ],
     imageSrc: '/projects/altolend.png',
-    link: 'https://github.com/AdamN3',
+    link: 'https://github.com/AdamN3/altolend',
   },
 ];

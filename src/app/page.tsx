@@ -22,8 +22,8 @@ import ProjectCard from '@/components/ProjectCard';
 
 const stackSkills = [
   'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'React', 'Next.js',
-  'Node.js', 'Tailwind CSS', 'FastAPI', 'Scikit-learn', 'Streamlit',
-  'OpenAI API', 'Anthropic API', 'LangChain', 'Framer Motion', 'GSAP',
+  'Tailwind CSS', 'FastAPI', 'PostgreSQL', 'Scikit-learn',
+  'Anthropic API', 'Framer Motion', 'GSAP',
   'Git', 'GitHub', 'Vercel', 'Railway', 'Figma', 'Cursor'
 ];
 

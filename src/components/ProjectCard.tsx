@@ -26,6 +26,10 @@ const TECH_ICON_MAP: Record<string, string> = {
   FastAPI: '/techstack/fastapi.svg',
   'Scikit-learn': '/techstack/scikitlearn.svg',
   Streamlit: '/techstack/streamlit.svg',
+  PostgreSQL: '/techstack/postgresql.svg',
+  'Anthropic API': '/techstack/anthropic.svg',
+  Vercel: '/techstack/vercel.svg',
+  Railway: '/techstack/railway.svg',
 };
 
 // --- Optimization 1: Use React.memo ---
@@ -103,7 +107,7 @@ const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, index }) 
             <div className="mt-2">
               <p className="md:text-sm text-xs text-gray-400">{project.role}</p>
             </div>
-            <div className="mt-3 flex items-center gap-2">
+            <div className="mt-3 flex flex-wrap items-center gap-2">
               {project.techIcons.map((tech) => (
                 <div
                   key={tech}
