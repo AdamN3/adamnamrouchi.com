@@ -10,6 +10,7 @@ import { projects } from '@/data/projects'; // Adjust the path if your file is i
 // Import your components and blocks
 // Removed GooeyNav import
 import BlurText from "@/blocks/TextAnimations/BlurText/BlurText";
+import HeroNameScramble from "@/components/HeroNameScramble";
 import TrueFocus from "@/blocks/TextAnimations/TrueFocus/TrueFocus";
 import Threads from "@/blocks/Backgrounds/Threads/Threads";
 // ScrollReveal is imported but not used in the provided code snippet, keep if used elsewhere
@@ -60,12 +61,8 @@ export default function Home() {
 
         {/* ... other main content elements ... */}
         <div className="w-full flex justify-center items-center my-4 md:mt-15 text-center font-bold relative px-4 md:px-0">
-          <BlurText
+          <HeroNameScramble
             text="Adam Namrouchi"
-            delay={150}
-            animateBy="letters"
-            direction="top"
-            onAnimationComplete={handleAnimationComplete}
             className="lg:text-9xl md:text-7xl text-4xl text-center"
           />
         </div>
@@ -73,7 +70,6 @@ export default function Home() {
         <div className="font-bold text-center opacity-0 animate-fadeIn mt-1 md:mt-3">
           <TrueFocus
             sentence="Developer · Builder · Founder"
-            manualMode={true}
             blurAmount={5}
             borderColor="cyan"
             animationDuration={0.3}

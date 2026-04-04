@@ -27,7 +27,10 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     animationDuration = 0.5,
     pauseBetweenAnimations = 1,
 }) => {
-    const words = sentence.split(" ");
+    const delimiter = " · ";
+    const words = sentence.includes(delimiter)
+        ? sentence.split(delimiter)
+        : sentence.split(" ");
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [lastActiveIndex, setLastActiveIndex] = useState<number | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -72,32 +75,45 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
         }
     };
 
+    const usesWordDelimiter = sentence.includes(delimiter);
+
     return (
         <div
-            className="relative flex gap-4 justify-center items-center flex-wrap"
+            className={`relative flex justify-center items-center flex-wrap ${usesWordDelimiter ? "gap-0" : "gap-4"}`}
             ref={containerRef}
         >
             {words.map((word, index) => {
                 const isActive = index === currentIndex;
+                const showDelimiter = usesWordDelimiter && index > 0;
                 return (
-                    <span
-                        key={index}
-                        ref={(el) => {wordRefs.current[index] = el}}
-                        className="relative lg:text-[2rem] md:text-[1.7rem] sm:text[1.2rem] xs:text[1rem]"
-                        style={{
-                            filter: manualMode
-                                ? isActive
-                                    ? `blur(0px)`
-                                    : `blur(${blurAmount}px)`
-                                : isActive
-                                    ? `blur(0px)`
-                                    : `blur(${blurAmount}px)`,
-                            transition: `filter ${animationDuration}s ease`,
-                        } as React.CSSProperties}
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        {word}
+                    <span key={index} className="inline-flex items-center">
+                        {showDelimiter && (
+                            <span className="mx-2 lg:text-[2rem] md:text-[1.7rem] sm:text[1.2rem] xs:text[1rem] text-white/80">
+                                ·
+                            </span>
+                        )}
+                        <span
+                            ref={(el) => {
+                                wordRefs.current[index] = el;
+                            }}
+                            className="relative lg:text-[2rem] md:text-[1.7rem] sm:text[1.2rem] xs:text[1rem]"
+                            style={
+                                {
+                                    filter: manualMode
+                                        ? isActive
+                                            ? `blur(0px)`
+                                            : `blur(${blurAmount}px)`
+                                        : isActive
+                                          ? `blur(0px)`
+                                          : `blur(${blurAmount}px)`,
+                                    transition: `filter ${animationDuration}s ease`,
+                                } as React.CSSProperties
+                            }
+                            onMouseEnter={() => handleMouseEnter(index)}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {word}
+                        </span>
                     </span>
                 );
             })}

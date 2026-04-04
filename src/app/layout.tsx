@@ -1,9 +1,7 @@
 'use client'; // This layout uses client-side hooks and event listeners
 
-// Include imports for Lenis AND the cursor
 import React, { useEffect, useRef, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
-import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
 import GooeyNav from "@/blocks/Components/GooeyNav/GooeyNav";
 import { usePathname } from 'next/navigation';
@@ -100,97 +98,11 @@ export default function RootLayout({
   }, []); // Empty dependency array ensures this effect runs only once on mount and cleans up on unmount
   // --- End Lenis Implementation ---
 
-
-  // --- Custom Cursor Implementation (Moved from page.tsx) ---
-  // Use MotionValues to track the raw mouse position
-  // Initialize to 0 on both server and client to prevent hydration errors
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-
-  // Configure spring physics for the dot (follows closely)
-  const dotSpringConfig = { damping: 25, stiffness: 200 };
-  // Configure spring physics for the outline (trails the dot)
-  const outlineSpringConfig = { damping: 35, stiffness: 400 }; // More damping/less stiffness for trailing
-
-  // Create sprung motion values for the inner dot
-  const dotX = useSpring(cursorX, dotSpringConfig);
-  const dotY = useSpring(cursorY, dotSpringConfig);
-
-  // Create sprung motion values for the outer outline, based on the dot's sprung values
-  const outlineX = useSpring(dotX, outlineSpringConfig);
-  const outlineY = useSpring(dotY, outlineSpringConfig);
-
-  // Effect to update mouse position on mousemove AND set initial position after mount
-  useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-    };
-
-    // Set initial cursor position to the center of the window after the component mounts
-    // This runs only on the client after hydration
-    // setTimeout is optional, but can help ensure initial positioning after paint
-    setTimeout(() => {
-        cursorX.set(window.innerWidth / 2);
-        cursorY.set(window.innerHeight / 2);
-    }, 0);
-
-
-    // Add event listener for subsequent mouse movements
-    window.addEventListener('mousemove', moveCursor);
-
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener('mousemove', moveCursor);
-    };
-  }, [cursorX, cursorY]); // Dependencies: update effect if motion values change (they won't here, but good practice)
-  // --- End Custom Cursor Implementation ---
-
-
   return (
     <html lang="en">
       <body
-        // Added bg-black class for black background
         className={`${geistSans.variable} ${geistMono.variable} ${gilroy.variable} antialiased font-gilroy bg-black`}
-        style={{ cursor: 'none' }} // Apply cursor: none globally to the body
         >
-        {/* Custom Cursor Dot */}
-        <motion.div
-            style={{
-            x: dotX, // Bind x position to the dot's sprung motion value
-            y: dotY, // Bind y position to the dot's sprung motion value
-            pointerEvents: 'none', // Ensure the cursor doesn't block clicks on elements below it
-            left: 0, // Position relative to the viewport
-            top: 0,
-            position: 'fixed', // Stay in fixed position relative to the viewport
-            zIndex: 9999, // Ensure it's always on top
-            transform: 'translate(-50%, -50%)', // Center the div exactly on the cursor coordinates
-            width: '8px', // Size of the inner dot
-            height: '8px',
-            borderRadius: '50%', // Make it round
-            backgroundColor: '#06b6d4', // Cyan color (Tailwind cyan-500 equivalent)
-            boxShadow: '0 0 10px 4px rgba(6, 182, 212, 0.7)', // Glowing effect
-            }}
-        />
-        {/* Custom Cursor Outline */}
-        <motion.div
-            style={{
-            x: outlineX, // Bind x position to the outline's sprung motion value
-            y: outlineY, // Bind y position to the outline's sprung motion value
-            pointerEvents: 'none', // Ensure the cursor doesn't block clicks
-            left: 0, // Position relative to the viewport
-            top: 0,
-            position: 'fixed', // Stay in fixed position
-            zIndex: 9998, // Z-index slightly lower than the dot
-            transform: 'translate(-50%, -50%)', // Center the div
-            width: '30px', // Size of the outer circle
-            height: '30px',
-            borderRadius: '50%', // Make it round
-            border: '2px solid #0891b2', // Border color (Tailwind cyan-600 equivalent)
-            // Optional: opacity for transparency
-            opacity: 0.5,
-            }}
-        />
         {/* Header Section */}
         {/* Adjusted padding for different screen sizes */}
         <header className="sticky top-0 z-50 flex w-full items-center justify-between px-4 py-2 md:px-8 md:py-3 bg-transparent backdrop-blur-[3px]">
