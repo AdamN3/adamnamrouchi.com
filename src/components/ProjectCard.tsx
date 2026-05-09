@@ -99,7 +99,7 @@ const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, index }) 
             <div className="flex items-center gap-2">
               <h3 className="md:text-xl text-md font-semibold text-white">{project.title}</h3>
               {project.tag && (
-                <span className="text-[10px] md:text-xs px-2 py-1 rounded-full border border-cyan-400/50 text-cyan-300">
+                <span className="text-[10px] md:text-xs px-2 py-1 rounded-full border border-green-400/50 text-green-300">
                   {project.tag}
                 </span>
               )}

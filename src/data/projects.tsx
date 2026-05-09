@@ -4,6 +4,7 @@ export const projects = [
     number: '01',
     title: 'Callavex',
     role: 'Full Stack Developer & Co-Founder',
+    tag: 'Live',
     techIcons: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     imageSrc: '/projects/callavex.png',
     link: 'https://callavex.vercel.app/',
@@ -13,6 +14,7 @@ export const projects = [
     number: '02',
     title: 'Fast Mobile DPF Cleaning',
     role: 'Full Stack Developer',
+    tag: 'Live',
     techIcons: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     imageSrc: '/projects/dpf.png',
     link: 'https://mobiledpfpro.vercel.app/',
@@ -22,7 +24,7 @@ export const projects = [
     number: '03',
     title: 'Altolend',
     role: 'Full Stack Developer',
-    tag: 'In Progress',
+    tag: 'Live',
     techIcons: [
       'Python',
       'Scikit-learn',
@@ -33,6 +35,6 @@ export const projects = [
       'Tailwind CSS',
     ],
     imageSrc: '/projects/altolend.png',
-    link: 'https://github.com/AdamN3/altolend',
+    link: 'https://altolend.vercel.app/',
   },
 ];

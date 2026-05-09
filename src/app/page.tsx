@@ -25,7 +25,7 @@ const stackSkills = [
   'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'React', 'Next.js',
   'Tailwind CSS', 'FastAPI', 'PostgreSQL', 'Scikit-learn',
   'Anthropic API', 'Framer Motion', 'GSAP',
-  'Git', 'GitHub', 'Vercel', 'Railway', 'Figma', 'Cursor'
+  'Git', 'GitHub', 'Vercel', 'Render', 'Supabase', 'Figma', 'Cursor'
 ];
 
 const handleAnimationComplete = () => {
